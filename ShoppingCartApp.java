@@ -3,7 +3,7 @@ package DAY_3;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// Class to represent a product/item
+
 class Item {
     String name;
     double price;
@@ -21,7 +21,7 @@ class Item {
     }
 }
 
-// Class to manage the shopping cart
+
 class ShoppingCart {
     private ArrayList<Item> cartItems;
 
@@ -79,7 +79,7 @@ public class ShoppingCartApp {
             System.out.println("\n1. Add Item\n2. Remove Item\n3. View Cart\n4. Calculate Total\n5. Exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
-            sc.nextLine();  // Consume newline
+            sc.nextLine();  
 
             switch (choice) {
                 case 1:
