@@ -1,0 +1,18 @@
+<web-app>
+  <display-name>Assignment 6</display-name>
+
+
+  <welcome-file-list>
+    <welcome-file>input.html</welcome-file>
+  </welcome-file-list>
+
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>com.nisum.UserServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/submit</url-pattern>
+  </servlet-mapping>
+</web-app>
