@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Servlet Methods Demo</title>
+</head>
+<body>
+<h1>Servlet doGet() and doPost() Demonstration</h1>
+
+<h2>GET Method Example</h2>
+<form action="MethodDemoServlet" method="get">
+    <label for="getParam">Enter your name:</label>
+    <input type="text" id="getParam" name="name">
+    <input type="submit" value="Submit via GET">
+</form>
+
+<h2>POST Method Example</h2>
+<form action="MethodDemoServlet" method="post">
+    <label for="postParam">Enter your email:</label>
+    <input type="email" id="postParam" name="email">
+    <input type="submit" value="Submit via POST">
+</form>
+</body>
+</html>
