@@ -1,0 +1,17 @@
+.fancy-button {
+  padding: 60px 150px;
+  font-size: 80px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  border: none;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease; /* smooth animation */
+  box-shadow: 0 4px 15px rgba(38, 44, 71, 0.3);
+}
+
+.fancy-button:hover {
+  background: linear-gradient(45deg, #2575fc, #6a11cb); /* reverse gradient */
+  transform: scale(1.1); /* scale up */
+}

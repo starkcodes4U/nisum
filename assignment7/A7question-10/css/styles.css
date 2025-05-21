@@ -1,0 +1,19 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: repeat(2, 1fr);    /* 2 rows */
+  gap: 10px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.item {
+  background-color: rgb(13, 36, 243);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 24px;
+  border-radius: 8px;
+}

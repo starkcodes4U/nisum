@@ -1,0 +1,17 @@
+.transform-box {
+  width: 150px;
+  height: 150px;
+  background-color: #4CAF50;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: transform 0.3s ease; /* smooth transition */
+  cursor: pointer;
+}
+
+.transform-box:hover {
+  transform: rotate(15deg) scale(1.2) translateX(20px);
+}

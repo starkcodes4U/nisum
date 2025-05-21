@@ -1,0 +1,15 @@
+.animated-button {
+  padding: 60px 80px;
+  font-size: 80px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease; 
+}
+
+.animated-button:hover {
+  background-color: #34a853;
+  transform: scale(1.1); 
+}

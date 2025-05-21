@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Indian-focused SPA with cultural and business information">
+    <title>Bharat Connect | Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1>Bharat Connect</h1>
+        <nav aria-label="Main navigation">
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#states" class="nav-link">States</a></li>
+                <li><a href="#business" class="nav-link">Business</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="app">
+        <section id="home" class="page-section active" aria-labelledby="home-heading">
+            <article>
+                <h2 id="home-heading">Welcome to Incredible India</h2>
+                <figure>
+                    <img src="https://via.placeholder.com/800x400?text=Taj+Mahal" alt="Taj Mahal in Agra" class="hero-image">
+                    <figcaption>Taj Mahal, UNESCO World Heritage Site</figcaption>
+                </figure>
+                <p>Discover the diversity of India's 28 states and 8 union territories.</p>
+                
+                <section aria-labelledby="facts-heading">
+                    <h3 id="facts-heading">Quick Facts</h3>
+                    <ul>
+                        <li><strong>Population:</strong> 1.4 billion (2023)</li>
+                        <li><strong>GDP:</strong> $3.7 trillion (nominal, 2023)</li>
+                        <li><strong>Languages:</strong> 22 officially recognized</li>
+                        <li><strong>Capital:</strong> New Delhi</li>
+                    </ul>
+                </section>
+            </article>
+        </section>
+
+        <section id="states" class="page-section" aria-labelledby="states-heading">
+            <article>
+                <h2 id="states-heading">Indian States</h2>
+                <section aria-labelledby="south-heading">
+                    <h3 id="south-heading">Southern States</h3>
+                    <div class="state-grid" role="list">
+                        <article class="state-card" role="listitem">
+                            <h4>Tamil Nadu</h4>
+                            <p><strong>Capital:</strong> Chennai</p>
+                            <p><strong>Famous for:</strong> Temples, filter coffee</p>
+                        </article>
+                        <article class="state-card" role="listitem">
+                            <h4>Karnataka</h4>
+                            <p><strong>Capital:</strong> Bengaluru</p>
+                            <p><strong>Famous for:</strong> IT industry, Mysore Pak</p>
+                        </article>
+                    </div>
+                </section>
+            </article>
+        </section>
+
+        <section id="business" class="page-section" aria-labelledby="business-heading">
+            <article>
+                <h2 id="business-heading">Indian Economy</h2>
+                <section aria-labelledby="sectors-heading">
+                    <h3 id="sectors-heading">Key Sectors</h3>
+                    <ol>
+                        <li>Information Technology</li>
+                        <li>Pharmaceuticals</li>
+                        <li>Automobile</li>
+                        <li>Textiles</li>
+                    </ol>
+                </section>
+                
+                <section aria-labelledby="companies-heading">
+                    <h3 id="companies-heading">Major Companies</h3>
+                    <ul>
+                        <li>Tata Group</li>
+                        <li>Reliance Industries</li>
+                        <li>Infosys</li>
+                        <li>HDFC Bank</li>
+                    </ul>
+                </section>
+            </article>
+        </section>
+
+        <section id="contact" class="page-section" aria-labelledby="contact-heading">
+            <article>
+                <h2 id="contact-heading">Contact Us</h2>
+                <div class="contact-container">
+                    <form id="contact-form" aria-label="Contact form">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State:</label>
+                            <select id="state" name="state">
+                                <option value="">Select State</option>
+                                <option value="MH">Maharashtra</option>
+                                <option value="TN">Tamil Nadu</option>
+                                <option value="UP">Uttar Pradesh</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="button">Submit</button>
+                    </form>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>© 2023 Bharat Connect. All rights reserved.</p>
+        <address>
+            <p>Mumbai, Maharashtra - 400001</p>
+        </address>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
