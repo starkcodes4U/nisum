@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>setTimeout Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    #message {
+      font-size: 60px;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="message">Waiting for message...</div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById('message').textContent = 'Hello, JavaScript!';
+    }, 2000);
+  </script>
+
+</body>
+</html>
