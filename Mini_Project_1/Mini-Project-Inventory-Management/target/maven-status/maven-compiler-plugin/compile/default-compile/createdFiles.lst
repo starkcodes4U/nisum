@@ -1,0 +1,4 @@
+com\nisum\AddInventoryServlet.class
+com\nisum\GetInventoryServlet.class
+com\nisum\DBUtil.class
+com\nisum\HelloServlet.class

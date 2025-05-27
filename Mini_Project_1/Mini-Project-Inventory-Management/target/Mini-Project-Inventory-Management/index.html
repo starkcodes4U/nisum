@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+    <h2>Inventory Management System</h2>
+    <ul>
+        <li><a href="#addInventorySection">Add Inventory</a></li>
+        <li><a href="#inventoryActionsSection">Inventory Actions</a></li>
+    </ul>
+</div>
+
+<div class="main-content">
+    <section id="addInventorySection">
+        <h1>Inventory Dashboard</h1>
+        <h2>Add Inventory</h2>
+        <form id="addInventoryForm">
+            <input type="text" id="sku" name="sku" required placeholder="SKU">
+            <select id="productId" name="productId" required>
+                <option value="">Select Product ID</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <input type="number" id="categoryId" name="categoryId" required placeholder="Category ID">
+            <input type="text" id="location" name="location" required placeholder="Location">
+            <input type="number" id="quantity" name="quantity" required placeholder="Quantity">
+            <button type="submit" id="addInventoryButton">Add Inventory</button>
+        </form>
+    </section>
+
+    <section id="inventoryActionsSection">
+        <h2>Inventory Actions</h2>
+        <form id="inventoryActionsForm">
+            <select id="action" name="action">
+                <option value="adjustInventory">Adjust Inventory</option>
+                <option value="cancelInventory">Cancel Inventory</option>
+                <option value="reserveInventory">Reserve Inventory for Order</option>
+                <option value="allocateInventory">Allocate Inventory for Order</option>
+            </select>
+            <input type="text" id="actionSku" name="sku" required placeholder="SKU">
+            <input type="number" id="actionQty" name="quantity" required placeholder="Quantity">
+            <input type="number" id="orderId" name="orderId" placeholder="Order ID (if applicable)">
+            <button type="submit" id="applyActionButton">Apply Action</button>
+        </form>
+    </section>
+
+    <section id="inventoryTableSection">
+        <h2>Inventory Table</h2>
+        <table id="inventoryTable" border="1" style="width:100%; border-collapse: collapse;">
+            <thead>
+            <tr>
+                <th>SKU</th>
+                <th>Location</th>
+                <th>Available Qty</th>
+                <th>Reserved Qty</th>
+                <th>Allocated Qty</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Inventory rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </section>
+</div>
+
+<!-- JavaScript Section -->
+<script>
+    document.getElementById("addInventoryForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        // Build URL-encoded form data
+        const params = new URLSearchParams();
+        new FormData(this).forEach((value, key) => params.append(key, value));
+
+        // Debug: Log form data to console
+        console.log("Form data being submitted:");
+        for (let pair of params.entries()) {
+            console.log(pair[0] + ": " + pair[1]);
+        }
+
+        fetch("/Mini-Project-Inventory-Management/AddInventoryServlet", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+            body: params.toString()
+        })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) {
+                    loadInventory();
+                    document.getElementById("addInventoryForm").reset();
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Error submitting form. Check console for details.");
+            });
+    });
+
+    function loadInventory() {
+        fetch("/Mini-Project-Inventory-Management/GetInventoryServlet")
+            .then(res => res.json())
+            .then(data => {
+                const tbody = document.querySelector("#inventoryTable tbody");
+                tbody.innerHTML = "";
+                data.forEach(row => {
+                    tbody.innerHTML += `<tr>
+                    <td>${row.SKU}</td>
+                    <td>${row.Location}</td>
+                    <td>${row.Quantity}</td>
+                    <td>${row.ReservedQty}</td>
+                    <td>${row.AllocatedQty}</td>
+                </tr>`;
+                });
+            })
+            .catch(error => {
+                console.error("Error loading inventory:", error);
+            });
+    }
+
+    window.onload = loadInventory;
+</script>
+
+</body>
+</html>

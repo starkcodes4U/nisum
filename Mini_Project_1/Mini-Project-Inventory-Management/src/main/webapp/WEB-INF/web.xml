@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+
+  <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>HelloServlet</servlet-name>
+    <servlet-class>com.nisum.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloServlet</servlet-name>
+    <url-pattern>/home1</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddInventoryServlet</servlet-name>
+    <servlet-class>com.nisum.AddInventoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddInventoryServlet</servlet-name>
+    <url-pattern>/AddInventoryServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>GetInventoryServlet</servlet-name>
+    <servlet-class>com.nisum.GetInventoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetInventoryServlet</servlet-name>
+    <url-pattern>/GetInventoryServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>InventoryActionServlet</servlet-name>
+    <servlet-class>com.nisum.InventoryActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InventoryActionServlet</servlet-name>
+    <url-pattern>/InventoryActionServlet</url-pattern>
+  </servlet-mapping>
+
+</web-app>
+

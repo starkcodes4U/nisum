@@ -1,0 +1,58 @@
+/* ...existing code... */
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 220px;
+    background: #222e50;
+    color: #fff;
+    min-height: 100vh;
+    padding: 30px 10px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    flex: 1;
+    padding: 40px;
+    background: #f4f6fa;
+}
+/* ...existing code... */
+
+#header {
+    text-align: center;
+}
+
+#addInventoryButton {
+    color: rgb(225, 225, 237);
+    background-color: #007BFF;
+    padding: 0px 20px;    /* Makes the button larger */
+    font-size: 1em;      /* Increases the text size */
+    border-radius: 4px;    /* Optional: rounded corners */
+    border-color: #007BFF;
+}
+
