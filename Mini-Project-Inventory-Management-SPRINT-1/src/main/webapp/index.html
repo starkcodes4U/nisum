@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+    <h2>Inventory Management System</h2>
+    <ul>
+        <li><a href="#addInventorySection">Add Inventory</a></li>
+        <li><a href="#inventoryActionsSection">Inventory Actions</a></li>
+    </ul>
+</div>
+
+<div class="main-content">
+    <section id="addInventorySection">
+        <h1 class="dashboard-title">Inventory Dashboard</h1>
+        <h2>Add Inventory</h2>
+        <form id="addInventoryForm">
+            <input type="text" id="sku" name="sku" required placeholder="SKU">
+            <input type="text" id="location" name="location" required placeholder="Location">
+            <input type="number" id="quantity" name="quantity" required placeholder="Quantity">
+            <button type="submit" id="addInventoryButton">Add Inventory</button>
+        </form>
+    </section>
+
+    <section id="inventoryActionsSection">
+        <h2>Inventory Actions</h2>
+        <form id="inventoryActionsForm">
+            <select id="action" name="action" required>
+                <option value="adjustInventory">Adjust Inventory</option>
+                <option value="cancelInventory">Cancel Inventory</option>
+                <option value="reserveInventory">Reserve Inventory for Order</option>
+                <option value="allocateInventory">Allocate Inventory for Order</option>
+            </select>
+            <input type="text" id="actionSku" name="sku" required placeholder="SKU">
+            <input type="number" id="actionQty" name="quantity" required placeholder="Quantity">
+            <input type="number" id="orderId" name="orderId" placeholder="Order ID (if applicable)" class="orderField" style="display: none;">
+            <div id="actionMessage" class="message-box"></div>
+            <button type="submit" id="applyActionButton">Apply Action</button>
+        </form>
+    </section>
+
+    <section id="inventoryTableSection">
+        <h2>Inventory Table</h2>
+        <table id="inventoryTable" border="1" style="width:100%; border-collapse: collapse;">
+            <thead>
+            <tr>
+                <th>SKU</th>
+                <th>Location</th>
+                <th>Available Qty</th>
+                <th>Reserved Qty</th>
+                <th>Allocated Qty</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </section>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
