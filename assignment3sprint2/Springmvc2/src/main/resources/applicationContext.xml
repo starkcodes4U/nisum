@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- SETTER Injection -->
+    <bean id="addressBean" class="com.nisum.Address">
+        <property name="city" value="Bhubaneswar"/>
+        <property name="state" value="Odisha"/>
+        <property name="country" value="India"/>
+    </bean>
+
+    <!-- CONSTRUCTOR Injection -->
+    <bean id="employeeBean" class="com.nisum.Employee">
+        <constructor-arg value="Rahul"/>
+        <constructor-arg ref="addressBean"/>
+    </bean>
+
+</beans>
