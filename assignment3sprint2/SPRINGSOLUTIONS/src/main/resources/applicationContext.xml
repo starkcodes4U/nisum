@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- SpellChecker Bean -->
+    <bean id="spellChecker" class="com.nisum.SpellChecker"/>
+
+    <!-- TextEditor Bean using Constructor Injection -->
+    <bean id="textEditorConstructor" class="com.nisum.TextEditor">
+        <constructor-arg ref="spellChecker"/>
+    </bean>
+
+    <!-- TextEditor Bean using Setter Injection -->
+    <bean id="textEditorSetter" class="com.nisum.TextEditor">
+        <property name="spellChecker" ref="spellChecker"/>
+    </bean>
+
+</beans>
