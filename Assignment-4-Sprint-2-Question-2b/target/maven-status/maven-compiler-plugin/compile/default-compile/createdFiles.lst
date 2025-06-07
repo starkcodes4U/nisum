@@ -1,0 +1,3 @@
+com\nisum\Bipul\model\Product.class
+com\nisum\Bipul\config\WebConfig.class
+com\nisum\Bipul\controller\ProductRestController.class
