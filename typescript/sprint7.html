@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Do List</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f3f4f6, #dbeafe);
+      margin: 0;
+      padding: 2rem;
+      color: #1f2937;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #3b82f6;
+    }
+    form {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    input, textarea, select, button {
+      padding: 0.75rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #3b82f6;
+      color: #fff;
+      cursor: pointer;
+    }
+    .todo-list {
+      display: grid;
+      gap: 1rem;
+    }
+    .todo {
+      padding: 1rem;
+      background-color: #eff6ff;
+      border-left: 5px solid #3b82f6;
+      border-radius: 10px;
+    }
+    .todo p {
+      margin: 0.2rem 0;
+    }
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .actions button {
+      flex: 1;
+      background-color: #f59e0b;
+    }
+    .actions button.delete {
+      background-color: #ef4444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>To Do List</h1>
+    <form id="todoForm">
+      <input type="hidden" id="editId" />
+      <input type="text" id="title" placeholder="Title" required />
+      <textarea id="description" placeholder="Description" required></textarea>
+      <input type="date" id="dueDate" required />
+      <select id="priority">
+        <option value="Low">Low Priority</option>
+        <option value="Medium">Medium Priority</option>
+        <option value="High">High Priority</option>
+      </select>
+      <select id="status" style="display: none">
+        <option value="Pending">Pending</option>
+        <option value="Completed">Completed</option>
+      </select>
+      <button type="submit" id="submitButton">Add Task</button>
+    </form>
+    <div class="todo-list" id="todoList"></div>
+  </div>
+ 
+  <script type="module">
+    const todoList = new Map();
+    let idSymbol = Symbol('id');
+ 
+    class Todo {
+      constructor({ title, description, dueDate, status = 'Pending', priority = 'Low' }) {
+        this[idSymbol] = Todo.generateId();
+        Object.assign(this, { title, description, dueDate, status, priority });
+      }
+ 
+      static generateId = (() => {
+        let id = 0;
+        return () => ++id;
+      })();
+ 
+      getId() {
+        return this[idSymbol];
+      }
+    }
+ 
+    function* todoGenerator() {
+      for (let todo of todoList.values()) {
+        yield todo;
+      }
+    }
+ 
+    const renderTodo = (todo) => {
+      const { title, description, dueDate, status, priority } = todo;
+      const id = todo.getId();
+      return `
+        <div class="todo" data-id="${id}">
+          <p><strong>ID:</strong> ${id}</p>
+          <p><strong>Title:</strong> ${title}</p>
+          <p><strong>Description:</strong> ${description}</p>
+          <p><strong>Due Date:</strong> ${dueDate}</p>
+          <p><strong>Status:</strong> ${status}</p>
+          <p><strong>Priority:</strong> ${priority}</p>
+          <div class="actions">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </div>
+        </div>`;
+    };
+ 
+    const displayTodos = () => {
+      const listEl = document.getElementById('todoList');
+      listEl.innerHTML = '';
+      for (let todo of todoGenerator()) {
+        listEl.innerHTML += renderTodo(todo);
+      }
+    };
+ 
+    const form = document.getElementById('todoForm');
+    const submitButton = document.getElementById('submitButton');
+ 
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const [editIdEl, titleEl, descEl, dueEl, priorityEl, statusEl] = form.elements;
+ 
+      const status = editIdEl.value ? statusEl.value : 'Pending';
+ 
+      const todoData = {
+        title: titleEl.value,
+        description: descEl.value,
+        dueDate: dueEl.value,
+        status,
+        priority: priorityEl.value
+      };
+ 
+      if (editIdEl.value) {
+        const id = Number(editIdEl.value);
+        const existing = todoList.get(id);
+        Object.assign(existing, todoData);
+      } else {
+        const newTodo = new Todo(todoData);
+        todoList.set(newTodo.getId(), newTodo);
+      }
+ 
+      form.reset();
+      editIdEl.value = '';
+      statusEl.style.display = 'none';
+      submitButton.textContent = 'Add Task';
+      displayTodos();
+    });
+ 
+    document.getElementById('todoList').addEventListener('click', (e) => {
+      const parent = e.target.closest('.todo');
+      const id = Number(parent.dataset.id);
+ 
+      if (e.target.classList.contains('edit')) {
+        const todo = todoList.get(id);
+        document.getElementById('editId').value = id;
+        document.getElementById('title').value = todo.title;
+        document.getElementById('description').value = todo.description;
+        document.getElementById('dueDate').value = todo.dueDate;
+        document.getElementById('priority').value = todo.priority;
+        document.getElementById('status').value = todo.status;
+        document.getElementById('status').style.display = 'block';
+        submitButton.textContent = 'Save';
+      }
+ 
+      if (e.target.classList.contains('delete')) {
+        todoList.delete(id);
+        displayTodos();
+      }
+    });
+ 
+    const privateTodoSet = new WeakSet();
+    const demoTodo = new Todo({ title: 'Demo Task', description: 'Learn ES6', dueDate: '2025-06-10' });
+    privateTodoSet.add(demoTodo);
+    todoList.set(demoTodo.getId(), demoTodo);
+    displayTodos();
+  </script>
+</body>
+</html>
