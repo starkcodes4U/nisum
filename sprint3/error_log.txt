@@ -1,0 +1,7 @@
+Unhandled Exception in Thread: main
+Exception Type: java.lang.ArithmeticException
+Message: / by zero
+Stack Trace:
+java.lang.ArithmeticException: / by zero
+	at com.nisum.GlobalExceptionLogger.main(GlobalExceptionLogger.java:15)
+--------------------------------------------------
