@@ -1,0 +1,5 @@
+com\nisum\service\ProductServiceImpl.class
+com\nisum\model\Product.class
+com\nisum\ProductQ1Application.class
+com\nisum\controller\ProductController.class
+com\nisum\service\ProductService.class
