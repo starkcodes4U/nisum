@@ -1,4 +1,8 @@
 package com.example.demo.repository;
 
-public class UserRepository {
+import com.example.demo.model.User;
+import java.util.Optional;
+
+public interface UserRepository {
+    Optional<User> findById(Long id);
 }
